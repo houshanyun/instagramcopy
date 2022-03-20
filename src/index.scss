@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+%borderStyle {
+    border-radius: .3rem;
+    border: 1px solid rgba(119, 119, 119, 0.5);
+    // box-shadow: 0 0 0 1px #ccc;
+}
+
+%beforeTriangle {
+    content: "";
+    position: absolute;
+    border-bottom: 10px solid #fff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+@mixin imgStyle {
+    width: 80px;
+    text-align: center;
+    img {
+        width: 80%;
+        height: auto;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 2px #fa0;
+        vertical-align: middle;
+    }
+}
+
+@keyframes modalAnima {
+    0% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #777;
+}
+
+body {
+    background-color: #eee;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    border: none;
+    outline: none;
+    width: 12rem;
+    height: 2rem;
+    border-radius: .5rem;
+    padding: 0px 10px;
+    background-color: #ddd;
+    &::-ms-clear {
+        display: none;
+    }
+}
+
+.nav {
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    border-radius: initial;
+    @extend %borderStyle;
+    .modalWrap {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 99;
+        background-color: rgba($color: #000000, $alpha: .7);
+        backdrop-filter: blur(1px);
+        .close {
+            position: fixed;
+            top: 0;
+            right: 2%;
+            font-size: 2.7rem;
+            color: #fff;
+            cursor: pointer;
+        }
+        .newPost {
+            position: fixed;
+            width: 33%;
+            height: 70%;
+            background-color: #fff;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0%;
+            margin: auto;
+            border-radius: 1rem;
+            transform: scale(1.3);
+            opacity: 0;
+            animation: modalAnima .5s ease forwards;
+            & > h2 {
+                text-align: center;
+                padding: .5rem 0;
+                border-bottom: 2px solid #333;
+            }
+            .picWrap {
+                position: absolute;
+                top: 45%;
+                left: 50%;
+                transform: translate(-50%, -45%);
+                color: #999;
+                & > picture {
+                    display: block;
+                    width: 100%;
+                    font-size: 5rem;
+                    font-weight: 400;
+                    text-align: center;
+                }
+                & > h3 {
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                }
+            }
+            .inputFileStyle {
+                width: 10rem;
+                height: 2rem;
+                position: fixed;
+                top: 70%;
+                left: 50%;
+                transform: translate(-50%, -70%);
+                background-color: #0af;
+                border-radius: .7rem;
+                .inputName {
+                    display: block;
+                    width: 100%;
+                    padding: 4px 0;
+                    color: #fff;
+                    font-size: 1rem;
+                    text-align: center;
+                }
+                .imageUpdate {
+                    padding: initial;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                }
+            }
+        }
+    }
+    .navWrap {
+        max-width: 960px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+    }
+    .logo {
+        font-size: 25px;
+        padding: 0 20px;
+        line-height: 60px;
+        cursor: default;
+    }
+    @media only screen and (max-width: 600px) {
+        .searchInput {display: none;}
+    }
+    .searchInput {
+        position: relative;
+        top: 10px;
+        #search {
+            height: 2.5rem;
+            padding-left: 2rem;
+            &::-webkit-input-placeholder {
+                color: #aaa;
+            }
+        }
+    }
+    .navItems {
+        display: flex;
+        align-items: center;
+        & > li {
+            padding: 0 .7rem;
+            position: relative;
+            font-size: 25px;
+            color: #999;
+            z-index: 2;
+            &.active {
+                color: #000;
+            }
+            .heartContent {
+                @extend %borderStyle;
+                position: absolute;
+                top: 48px;
+                right: 0px;
+                display: block;
+                background-color: #fff;
+                width: 350px;
+                height: 300px;
+                z-index: 10;
+                &::before {
+                    @extend %beforeTriangle;
+                    z-index: 10;
+                    top: -9px;
+                    right: 20px;
+                }
+            }
+            .user {
+                position: relative;
+                display: block;
+                width: 30px;
+                height: 30px;
+                background-image: url("https://picsum.photos/id/235/30/30");
+                background-repeat: no-repeat;
+                background-position: center center;
+                border: 1px solid #ccc;
+                border-radius: 50%;
+                &.active {
+                    border: 1px solid #333;
+                }
+                .userSetting {
+                    background-color: #fff;
+                    border-radius: .5rem;
+                    position: absolute;
+                    bottom: -215px;
+                    right: -20px;
+                    width: 150px;
+                    color: #555;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    @extend %borderStyle;
+                    &::before {
+                        @extend %beforeTriangle;
+                        z-index: 2;
+                        top: -9px;
+                        right: 20px;
+                    }
+                    & > li {
+                        padding: .5rem;
+                    }
+                    & > li:nth-of-type(5) {
+                        border-top: 2px solid #ccc;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+
+
+}
+
+.mainWrap {
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    .mainLeft {
+        width: 100%;
+        height: 150px;
+        max-width: 640px;
+        flex-grow: 2;
+        .friendGroup {
+            position: relative;
+            margin: 1rem 1rem;
+            padding: 1rem;
+            background-color: #fff;
+            @extend %borderStyle;
+            overflow: hidden;
+            .eventPass {
+                pointer-events: none;
+            }
+            .arrowLeft {
+                position: absolute;
+                z-index: 1;
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                line-height: 28px;
+                background-color: #eee;
+                color: #777;
+                border-radius: 50%;
+            }
+            .arrowRight {
+                position: absolute;
+                z-index: 1;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                line-height: 28px;
+                background-color: #eee;
+                color: #777;
+                border-radius: 50%;
+            }
+            .friendWrap {
+                position: relative;
+                display: flex;
+                transform: translateX(0px);
+                transition: transform .5s ease-in-out;
+                &.active {
+                    transform: translateX(-320px);
+                }
+                .friendItem {
+                    @include imgStyle();
+
+                    & > h3 {
+                        font-size: 1rem;
+                        color: #ccc;
+                    }
+                    & + .friendItem {
+                        margin-left: 1rem;
+                    }
+                }
+            }
+        }
+        .postGroup {
+            margin: 1rem 1rem;
+            .post {
+                background-color: #fff;
+                @extend %borderStyle;
+                .postUser {
+                    display: flex;
+                    position: relative;
+                    padding: 1rem;
+                    .postUserPicture {
+                        @include imgStyle();
+                        width: 50px;
+                    }
+                    .postUserName {
+                        align-self: center;
+                        margin-left: 1rem;
+                        h3 {
+                            font-size: 1rem;
+                            font-weight: 400;
+                            color: #333;
+                        }
+                    }
+                    .upModal {
+                        position: absolute;
+                        top: 1rem;
+                        right: 1rem;
+                        font-size: 20px;
+                        font-weight: 700;
+                        cursor: pointer;
+                    }
+
+                }
+                .postPictures {
+                    .picWrap {
+                        position: relative;
+                        height: 700px;
+                        display: flex;
+                        overflow: hidden;
+                        picture {
+                            min-width: 606px;
+                            flex-shrink: 1;
+                            transform: translateX(0);
+                            transition: transform .5s ease-in-out;
+                            img {
+                                width: 100%;
+                                height: 100;
+                                object-fit: fill;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                    .imgPositionWrap {
+                        display: flex;
+                        justify-content: center;
+                        .imgPosition {
+                            width: 7px;
+                            height: 7px;
+                            border-radius: 50%;
+                            margin-top: 1rem;
+                            background-color: #555;
+                            & + .imgPosition {
+                                margin-left: .3rem;
+                            }
+                        }
+
+                    }
+
+
+
+
+                }
+                .postIcons {
+                    position: relative;
+                    display: flex;
+
+                    & > li {
+                        font-size: 1.7rem;
+                        color: #777;
+                        margin-left: 1rem;
+                        &:nth-of-type(4) {
+                            position: absolute;
+                            right: 1rem;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+    }
+    @media only screen and (max-width: 767px) {
+        .mainRight {display: none;}
+        .mainWrap { justify-content: center; }
+    }
+    .mainRight {
+        width: 100%;
+        max-width: 320px;
+        flex-grow: 1;
+        margin: auto;
+        .profile {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 2rem 0;
+            .myPicture {
+                @include imgStyle();
+            }
+            .myName {
+                position: relative;
+                left: -2rem;
+                & > h3 {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: #333;
+                    line-height: 1;
+                    &:nth-of-type(2) {
+                        font-weight: 400;
+                        color: #777;
+                    }
+                }
+            }
+            .changeUser {
+                background-color: transparent;
+                font-size: .8rem;
+                font-weight: 500;
+                color: #0af;
+                border: none;
+
+            }
+        }
+    }
+
+}
+
+
+

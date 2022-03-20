@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Nav from "./layouts/nav";
+import Guide from "./pages/Guide";
+import Home from "./pages/Home";
+import Message from "./pages/Message";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    useEffect(() => {
+        document.body.animate(
+            {
+                opacity: [0, 1],
+            },
+            {
+                easing: "ease-in-out",
+                fill: "forwards",
+                duration: 3000,
+            }
+        )
+    }, [])
+    return (
+            <BrowserRouter>
+                <Nav></Nav>
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/Message" element={<Message />} />
+                    <Route path="/Guide" element={<Guide />} />
+                </Routes>
+            </BrowserRouter>
+    );
 }
 
 export default App;

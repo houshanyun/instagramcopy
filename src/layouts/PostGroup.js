@@ -6,8 +6,23 @@ import {
     FaRegComment,
     FaRegGrinBeam
 } from "react-icons/fa";
-
+import { useState } from "react";
+// style={readState ? {textOverflow: "ellipsis"} : {textOverflow: "visible"}}
 const PostGroup = () => {
+    const [btn, setBtn] = useState(false)
+    const [input, setInput] = useState("")
+    const [readState, setReadState] = useState(true)
+    function handleInput(e) {
+        setInput(e.target.value)
+        if (e.target.value.length) {
+            setBtn(true)
+        } else {
+            setBtn(false)
+        }
+    }
+    function handleReadMore() {
+        return setReadState(false)
+    }
     return (
         <main className="postGroup">
             <div className="post">
@@ -62,25 +77,26 @@ const PostGroup = () => {
                         </div>
                     </div>
                     <div className="postComments">
-                        <p className="postContent">
-                            <span className="userName">aaaaa</span>
-                        不去我說服務上次每次一場雙方，一隻醫療，招聘背後主體住宅不願男生股東方法辦公室，試驗按鈕我很如下便宜呼吸增長笑道上網一些手中收藏本頁，你就機器性別之中懷疑男子填寫徹底，簡直之下校園航空大戰說到打印推坑大魔王威望，大學生屏東答案進攻旅遊美好主要它的，將在汽。
-
+                        <p className={readState ? "postContent" :"postContentActive"} >
+                        <span className="userName">aaaaa</span>
+                        不去我說服務上次每次一場雙方，一隻醫療，
+                        招聘背後主體住宅不願男生股東方法辦公室，
+                        試驗按鈕我很如下便宜呼吸增長笑道上網一些手中收藏本頁，
+                        你就機器性別之中懷疑男子填寫徹底，
+                        簡直之下校園航空大戰說到打印推坑大魔王威望，
+                        大學生屏東答案進攻旅遊美好主要它的，將在汽。
                         </p>
-                        <span className="readMore">繼續閱讀</span>
-
-
+                        {readState && <span className="readMore" onClick={handleReadMore}>繼續閱讀</span>}
                     </div>
                     <div className="wrap">
-                            <div className="userComments"><p>其他留言</p></div>
+                            {/* <div className="userComments"><p>其他留言</p></div> */}
                             <time>1日前</time>
                     </div>
-
                     <div className="addComment">
                         <div className="emoji"><FaRegGrinBeam /></div>
                         <form className="Comment">
-                            <input type="text" placeholder="輸入留言"/>
-                            <button type="submit">留言</button>
+                            <input type="text" onChange={handleInput} value={input} placeholder="輸入留言"/>
+                            <button className={btn ? "onBtn" : "offBtn"}>留言</button>
                         </form>
                     </div>
                 </div>

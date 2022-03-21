@@ -5,6 +5,7 @@ import Logo from "../components/Logo";
 import Modal from "../components/Modal";
 import Icons from "../assets/Icons";
 import UserSetting from "../components/User";
+import UpContent from "../components/UpContent"
 
 
 const Nav = () => {
@@ -39,7 +40,6 @@ const Nav = () => {
         switch (position) {
             case `${Icons[0][0]}`:
                 click[0] ? initClick() : handleClickBoolean(0)
-                console.log(click);
                 break;
             case `${Icons[1][0]}`:
                 click[1] ? initClick() : handleClickBoolean(1)
@@ -70,8 +70,8 @@ const Nav = () => {
                 handleIcons={handleIcons}
             />}
             <div className="navWrap">
-                <Logo />
-                <FormInput />
+                <Logo handleClick={handleClick}/>
+                <FormInput  handleClick={handleClick}/>
                 <ul className="navItems">
                     <li onClick={() => handleClick(Icons[0][0])}>
                         <Link to="/">
@@ -95,10 +95,10 @@ const Nav = () => {
                         {click[4] ? Icons[4][2] : Icons[4][1]}
                         {
                             click[4] &&
-                            <div className="heartContent"></div>
+                            <UpContent />
                         }
                     </li>
-                    <li onClick={() => handleClick(Icons[5][0])}>
+                    <li onClick={() => handleClick(Icons[5][0])} >
                         {
                             <div className={click[5]
                                 ? "user active"

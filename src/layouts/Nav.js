@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import FormInput from "./FormInput";
-import Logo from "./Logo";
-import Modal from "./Modal";
-import Icons from "../../assets/Icons";
-import UserSetting from "./User";
 import { Link, Outlet } from "react-router-dom";
+import FormInput from "../components/FormInput";
+import Logo from "../components/Logo";
+import Modal from "../components/Modal";
+import Icons from "../assets/Icons";
+import UserSetting from "../components/User";
+
 
 const Nav = () => {
 
@@ -46,16 +47,13 @@ const Nav = () => {
             case `${Icons[2][0]}`:
                 setOpen(true)
                 return handleIcons(2);
-                // click[2] ? initClick() : handleClickBoolean(2)
-                // break;
             case `${Icons[3][0]}`:
                 click[3] ? initClick() : handleClickBoolean(3)
                 break;
             case `${Icons[4][0]}`:
                 return handleIcons(4);
             case `${Icons[5][0]}`:
-                click[5] ? initClick() : handleClickBoolean(5)
-                break;
+                return handleIcons(5);
             default:
                 return initClick()
         }

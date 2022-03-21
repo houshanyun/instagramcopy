@@ -2,21 +2,17 @@ import { useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight  } from "react-icons/ai";
 
 const Friends = () => {
-    //const [arrowLeft, setArrowLeft] = useState(false)
-    //const [arrowRight, setArrowRight] = useState(true)
+
     const [arrow, setArrow] = useState([false, true])
+
     function imgActive(e) {
         const images = document.querySelector(".friendWrap")
         if (e.target.className === "arrowLeft") {
             images.classList.toggle("active")
             setArrow(() => [false, true])
-            // setArrowLeft(false)
-            // setArrowRight(true)
         } else {
             images.classList.toggle("active")
             setArrow(() => [true, false])
-            // setArrowLeft(true)
-            // setArrowRight(false)
         }
     }
     return (
